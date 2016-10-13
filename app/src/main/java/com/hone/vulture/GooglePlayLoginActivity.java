@@ -26,6 +26,7 @@ public class GooglePlayLoginActivity extends Activity implements View.OnClickLis
                 .build();
         setContentView(R.layout.activity_google_play_login);
         findViewById(R.id.sign_in_button).setOnClickListener(this);
+        findViewById(R.id.offline_button).setOnClickListener(this);
     }
 
     @Override
@@ -52,6 +53,9 @@ public class GooglePlayLoginActivity extends Activity implements View.OnClickLis
             text.setText("Signing into Google Play...");
             mSignInClicked = true;
             mGoogleApiClient.connect();
+        }
+        if (view.getId() == R.id.offline_button) {
+            //Proceed to main menu activity here
         }
     }
 }
