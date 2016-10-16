@@ -16,21 +16,18 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
+import com.google.example.games.basegameutils.BaseGameUtils;
 
 
 public class GooglePlayLoginActivity extends FragmentActivity implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleApiClient mGoogleApiClient;
 
+    private static int RC_SIGN_IN = 9001;
+
+    private boolean mResolvingConnectionFailure = false;
+    private boolean mAutoStartSignInFlow = true;
     private boolean mSignInClicked = false;
-    private boolean mIsInResolution;
-
-    private static final String TAG = "GooglePlayServicesActiv";
-
-    /**
-     * Request code for auto Google Play Services error resolution.
-     */
-    protected static final int REQUEST_CODE_RESOLUTION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,33 +56,29 @@ public class GooglePlayLoginActivity extends FragmentActivity implements View.On
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        //((TextView)findViewById(R.id.status_text)).setText("Connection failed: " + connectionResult.getErrorMessage());
-        Log.i(TAG, "GoogleApiClient connection failed: " + connectionResult.toString());
-        if (!connectionResult.hasResolution()) {
-            // Show a localized error dialog.
-            GooglePlayServicesUtil.getErrorDialog(
-                    connectionResult.getErrorCode(), this, 0, new DialogInterface.OnCancelListener() {
-                        @Override
-                        public void onCancel(DialogInterface dialog) {
-                            retryConnecting();
-                        }
-                    }).show();
+        if (mResolvingConnectionFailure) {
+            // already resolving
             return;
         }
-        // If there is an existing resolution error being displayed or a resolution
-        // activity has started before, do nothing and wait for resolution
-        // progress to be completed.
-        if (mIsInResolution) {
-            return;
+
+        // if the sign-in button was clicked or if auto sign-in is enabled,
+        // launch the sign-in flow
+        if (mSignInClicked || mAutoStartSignInFlow) {
+            mAutoStartSignInFlow = false;
+            mSignInClicked = false;
+            mResolvingConnectionFailure = true;
+
+            // Attempt to resolve the connection failure using BaseGameUtils.
+            // The R.string.signin_other_error value should reference a generic
+            // error string in your strings.xml file, such as "There was
+            // an issue with sign-in, please try again later."
+            if (!BaseGameUtils.resolveConnectionFailure(this,
+                    mGoogleApiClient, connectionResult,
+                    RC_SIGN_IN, "Sign-in error")) {
+                mResolvingConnectionFailure = false;
+            }
         }
-        mIsInResolution = true;
-        try {
-            connectionResult.startResolutionForResult(this, REQUEST_CODE_RESOLUTION);
-            mGoogleApiClient.connect();
-        } catch (IntentSender.SendIntentException e) {
-            Log.e(TAG, "Exception while starting resolution activity", e);
-            retryConnecting();
-        }
+
     }
 
     @Override
@@ -100,46 +93,27 @@ public class GooglePlayLoginActivity extends FragmentActivity implements View.On
             text.setText("Signing into Google Play...");
             mSignInClicked = true;
             mGoogleApiClient.connect();
-            //((TextView)findViewById(R.id.status_text)).setText("Google Play services availability: " + isGooglePlayServicesAvailable(this));
         }
         if (view.getId() == R.id.offline_button) {
             //Proceed to main menu activity here
         }
     }
 
-    private void retryConnecting() {
-        mIsInResolution = false;
-        if (!mGoogleApiClient.isConnecting()) {
-            mGoogleApiClient.connect();
-        }
-    }
-
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent intent) {
-        if (requestCode == 9001) {
+        if (requestCode == RC_SIGN_IN) {
             mSignInClicked = false;
+            mResolvingConnectionFailure = false;
             if (resultCode == RESULT_OK) {
-                mGoogleApiClient.connect(GoogleApiClient.SIGN_IN_MODE_REQUIRED);
+                mGoogleApiClient.connect();
             } else {
                 // Bring up an error dialog to alert the user that sign-in
                 // failed. The R.string.signin_failure should reference an error
                 // string in your strings.xml file that tells the user they
                 // could not be signed in, such as "Unable to sign in."
-                ((TextView)findViewById(R.id.status_text)).setText("9001");
+                BaseGameUtils.showActivityResultError(this,
+                        requestCode, resultCode, R.string.sign_in_failure);
             }
         }
-    }
-
-
-    public boolean isGooglePlayServicesAvailable(Activity activity) {
-        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
-        int status = googleApiAvailability.isGooglePlayServicesAvailable(activity);
-        if(status != ConnectionResult.SUCCESS) {
-            if(googleApiAvailability.isUserResolvableError(status)) {
-                googleApiAvailability.getErrorDialog(activity, status, 2404).show();
-            }
-            return false;
-        }
-        return true;
     }
 }
