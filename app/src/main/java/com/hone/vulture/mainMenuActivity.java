@@ -24,7 +24,7 @@ public class mainMenuActivity extends AppCompatActivity {
 
     public void onClick(View view) {
         if (view.getId() == R.id.quick_button) {
-        /*    Intent intent = new Intent(this, SetGameVariableActivity.class);   //Intent to Set Game Variables
+        /*    Intent intent = new Intent(this, SetGameVariableActivity.class);   //Intent to Set Game Variables 
             String game_type = "quick_game";                                   //Set game_type variable
             intent.putExtra(GAME_TYPE, game_type);                             //Set game_type as an extra
             startActivity(intent);*/
