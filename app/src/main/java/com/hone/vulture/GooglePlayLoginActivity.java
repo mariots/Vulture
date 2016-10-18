@@ -52,6 +52,10 @@ public class GooglePlayLoginActivity extends FragmentActivity implements View.On
     public void onConnected(Bundle connectionHint) {
         ((TextView)findViewById(R.id.status_text)).setText("Connection succeeded!");
         findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+        Intent intent = new Intent(this, MainMenuActivity.class);
+        String extraMessage = "";
+        intent.putExtra("EXTRA_MESSAGE", extraMessage);
+        startActivity(intent);
     }
 
     @Override
@@ -95,7 +99,10 @@ public class GooglePlayLoginActivity extends FragmentActivity implements View.On
             mGoogleApiClient.connect();
         }
         if (view.getId() == R.id.offline_button) {
-            //Proceed to main menu activity here
+            Intent intent = new Intent(this, MainMenuActivity.class);
+            String extraMessage = "Offline mode.";
+            intent.putExtra("EXTRA_MESSAGE", extraMessage);
+            startActivity(intent);
         }
     }
 
