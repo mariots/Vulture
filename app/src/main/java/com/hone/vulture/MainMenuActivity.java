@@ -1,13 +1,12 @@
 package com.hone.vulture;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class MainMenuActivity extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity implements  View.OnClickListener {
 
     private static final String GAME_TYPE = "Placeholder";
 
@@ -20,6 +19,12 @@ public class MainMenuActivity extends AppCompatActivity {
         String message = intent.getStringExtra("EXTRA_MESSAGE");
         TextView text = (TextView)findViewById(R.id.connection_identifier);
         text.setText(message);
+
+
+        //Added Listeners for buttons halephil
+        findViewById(R.id.quick_button).setOnClickListener(this);
+        findViewById(R.id.host_button).setOnClickListener(this);
+        findViewById(R.id.check_invites_button).setOnClickListener(this);
     }
 
     public void onClick(View view) {
@@ -37,8 +42,8 @@ public class MainMenuActivity extends AppCompatActivity {
         }
         if (view.getId() == R.id.check_invites_button) {
             //Go to CheckInvitesActivity
-            /*Intent intent = new Intent(this, CheckInvitesActivity.class);       //Intent to Check Invites
-            startActivity(intent);*/
+            Intent intent = new Intent(this, CheckInvitesActivity.class);       //Intent to Check Invites
+            startActivity(intent);
         }
 
     }

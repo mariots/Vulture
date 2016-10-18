@@ -32,7 +32,8 @@
             </intent-filter>
         </activity>
         <!-- activity android:name=".GooglePlayLoginActivity"></activity -->
-        <activity android:name=".MainMenuActivity"></activity>
+        <activity android:name=".MainMenuActivity" />
+        <activity android:name=".CheckInvitesActivity"></activity>
     </application>
 
 </manifest>
