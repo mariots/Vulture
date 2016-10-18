@@ -4,35 +4,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:layout_width="80dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/item_icon"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_height="80dp" />
+
+    <Button
+        android:text="Deny"
+        android:id="@+id/item_DenyBtn"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@+id/item_JoinBtn"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/item_JoinBtn"
+        android:background="@android:color/holo_red_light"
+        android:textColor="@android:color/white"
+        android:layout_width="55dp" />
+
     <TextView
         android:text="Sender Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/item_icon"
-        android:layout_toEndOf="@+id/item_icon"
-        android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp"
         android:id="@+id/item_senderName"
         android:allowUndo="false"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:layout_above="@+id/item_gameType"
+        android:layout_toRightOf="@+id/item_icon"
+        android:layout_toEndOf="@+id/item_icon"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:text="Game Type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/item_icon"
-        android:layout_alignLeft="@+id/item_senderName"
-        android:layout_alignStart="@+id/item_senderName"
         android:id="@+id/item_gameType"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:layout_alignBottom="@+id/item_JoinBtn"
+        android:layout_alignLeft="@+id/item_senderName"
+        android:layout_alignStart="@+id/item_senderName" />
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:id="@+id/item_icon"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    <Button
+        android:text="Join"
+        android:layout_height="40dp"
+        android:id="@+id/item_JoinBtn"
+        android:background="@android:color/holo_green_light"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="14dp"
+        android:layout_width="55dp"
+
+        android:layout_alignBottom="@+id/item_icon"
+        android:layout_toLeftOf="@+id/item_DenyBtn"
+        android:layout_toStartOf="@+id/item_DenyBtn" />
 </RelativeLayout>

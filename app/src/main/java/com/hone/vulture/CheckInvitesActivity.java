@@ -23,17 +23,21 @@ public class CheckInvitesActivity extends AppCompatActivity {
 
         populateInvitationList();
         populateListView();
+        //registerListViewClck();
 
 
     }
 
 
+
+
     private void populateInvitationList(){
-        myInvitations.add(new Invitation("Halen", 1, R.mipmap.ic_launcher, "QuickGame", 0001));
-        myInvitations.add(new Invitation("Andrew", 1, R.mipmap.ic_launcher, "Multiplayer", 0002));
-        myInvitations.add(new Invitation("Alex", 1, R.mipmap.ic_launcher, "Single", 0003));
-        myInvitations.add(new Invitation("Dian", 1, R.mipmap.ic_launcher, "QuickGame", 0004));
-        myInvitations.add(new Invitation("Mario", 1, R.mipmap.ic_launcher, "Legendary", 0005));
+        myInvitations.add(new Invitation("Halen", 1, R.mipmap.halen, "QuickGame", 0001));
+        myInvitations.add(new Invitation("Andrew", 1, R.mipmap.andrew, "Multiplayer", 0002));
+        myInvitations.add(new Invitation("Alex", 1, R.mipmap.alex, "Single Player", 0003));
+        myInvitations.add(new Invitation("Dian", 1, R.mipmap.dian, "QuickGame", 0004));
+        myInvitations.add(new Invitation("Mario", 1, R.mipmap.mario, "Legendary", 0005));
+        myInvitations.add(new Invitation("Halen", 1, R.mipmap.halen, "QuickGame", 0001));
 
     }
 
@@ -63,7 +67,7 @@ public class CheckInvitesActivity extends AppCompatActivity {
             imageView.setImageResource(currentInvitation.getIconID());
 
             TextView textGameType = (TextView)itemView.findViewById((R.id.item_gameType));
-            textGameType.setText("Game Type: " + currentInvitation.getGameType());
+            textGameType.setText(currentInvitation.getGameType());
 
             TextView textSenderName = (TextView)itemView.findViewById((R.id.item_senderName));
             textSenderName.setText(currentInvitation.getSenderName());
