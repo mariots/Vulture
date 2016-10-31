@@ -32,12 +32,12 @@ public class CheckInvitesActivity extends AppCompatActivity {
 
 
     private void populateInvitationList(){
-        myInvitations.add(new Invitation("Halen", 1, R.mipmap.halen, "QuickGame", 0001));
-        myInvitations.add(new Invitation("Andrew", 1, R.mipmap.andrew, "Multiplayer", 0002));
-        myInvitations.add(new Invitation("Alex", 1, R.mipmap.alex, "Single Player", 0003));
-        myInvitations.add(new Invitation("Dian", 1, R.mipmap.dian, "QuickGame", 0004));
-        myInvitations.add(new Invitation("Mario", 1, R.mipmap.mario, "Legendary", 0005));
-        myInvitations.add(new Invitation("Halen", 1, R.mipmap.halen, "QuickGame", 0001));
+        myInvitations.add(new Invitation("Halen", 1, R.mipmap.ic_launcher, "QuickGame", 0001));
+        myInvitations.add(new Invitation("Andrew", 1, R.mipmap.ic_launcher, "Multiplayer", 0002));
+        myInvitations.add(new Invitation("Alex", 1, R.mipmap.ic_launcher, "Single Player", 0003));
+        myInvitations.add(new Invitation("Dian", 1, R.mipmap.ic_launcher, "QuickGame", 0004));
+        myInvitations.add(new Invitation("Mario", 1, R.mipmap.ic_launcher, "Legendary", 0005));
+        myInvitations.add(new Invitation("Halen", 1, R.mipmap.ic_launcher, "QuickGame", 0001));
 
     }
 

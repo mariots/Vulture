@@ -23,19 +23,6 @@
         android:textColor="@android:color/holo_red_dark" />
 
     <Button
-        android:text="Play a Quick Game"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/quick_button"
-        android:layout_height="75dp"
-        android:layout_width="400dp"
-        style="@android:style/Widget.DeviceDefault.Button.Inset"
-        android:elevation="0dp"
-        android:textColor="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
-        android:fadingEdge="horizontal|vertical"
-        android:textSize="20sp" />
-
-    <Button
         android:text="Host a Private Game"
         android:layout_width="400dp"
         android:layout_height="75dp"
@@ -78,5 +65,20 @@
         android:layout_height="40dp"
         android:layout_above="@+id/quick_button"
         android:layout_marginBottom="20dp" />
+
+    <Button
+        android:text="Play a Quick Game"
+        android:id="@+id/quick_button"
+        android:layout_height="75dp"
+        android:layout_width="400dp"
+        style="@android:style/Widget.DeviceDefault.Button.Inset"
+        android:elevation="0dp"
+        android:textColor="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
+        android:fadingEdge="horizontal|vertical"
+        android:textSize="20sp"
+        android:layout_marginTop="182dp"
+        android:layout_below="@+id/connection_identifier"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

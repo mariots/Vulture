@@ -15,4 +15,8 @@
     </string>
     <string name="sign_in_other_error">Sign-in error.</string>
     <string name="sign_in_failure">Sign-in failure.</string>
+
+    <string name="title_activity_game_lobby">GameLobby</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

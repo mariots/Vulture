@@ -33,7 +33,12 @@
         </activity>
         <!-- activity android:name=".GooglePlayLoginActivity"></activity -->
         <activity android:name=".MainMenuActivity" />
-        <activity android:name=".CheckInvitesActivity"></activity>
+        <activity android:name=".CheckInvitesActivity" />
+        <activity
+            android:name=".GameLobby"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_game_lobby"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>
