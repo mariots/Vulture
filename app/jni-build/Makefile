@@ -1,0 +1,3 @@
+build:
+	ndk-build
+
