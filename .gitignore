@@ -6,3 +6,5 @@
 .DS_Store
 /build
 /captures
+/app/jni-build/obj
+/app/jni-build/libs
