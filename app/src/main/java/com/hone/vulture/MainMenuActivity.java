@@ -33,6 +33,8 @@ public class MainMenuActivity extends AppCompatActivity implements  View.OnClick
             String game_type = "quick_game";                                   //Set game_type variable
             intent.putExtra(GAME_TYPE, game_type);                             //Set game_type as an extra
             startActivity(intent);*/
+            Intent intent = new Intent(this, CameraActivity.class);
+            startActivity(intent);
         }
         if (view.getId() == R.id.host_button) {
             /*Intent intent = new Intent(this, SetGameVariableActivity.class);   //Intent to Set Game Variables
