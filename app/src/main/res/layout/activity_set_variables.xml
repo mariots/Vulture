@@ -10,4 +10,122 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.hone.vulture.SetVariables">
 
+    <TextView
+        android:text="Set Up Time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:id="@+id/setUpTextView"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Item List Difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textSize="18sp"
+        android:layout_alignBottom="@+id/setUpTextView"
+        android:layout_alignLeft="@+id/itemListDifficultyGroup"
+        android:layout_alignStart="@+id/itemListDifficultyGroup" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How many items?"
+        android:ems="10"
+        android:id="@+id/numberOfItems"
+        android:layout_above="@+id/playButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="51dp"
+        android:inputType="number" />
+
+    <Button
+        android:text="Play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/playButton"
+        android:layout_marginBottom="65dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/time"
+        android:layout_below="@+id/setUpTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RadioButton
+            android:text="5 Minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/time5"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/setUpTextView"
+            android:layout_toRightOf="@+id/radioGroup4"
+            android:layout_toEndOf="@+id/radioGroup4"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="0dp" />
+
+        <RadioButton
+            android:text="10 Minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/time10"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:text="20 Minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/time20"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:text="Unlimited"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeUnlimmited"
+            android:layout_weight="1" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="false"
+        android:measureWithLargestChild="false"
+        android:id="@+id/itemListDifficultyGroup"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/setUpTextView"
+        android:layout_alignRight="@+id/numberOfItems"
+        android:layout_alignEnd="@+id/numberOfItems">
+
+        <RadioButton
+            android:text="Common"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listCommon"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:text="Uncommon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listUncommon"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:text="Rare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listRare"
+            android:layout_weight="1" />
+
+    </RadioGroup>
+
 </RelativeLayout>
