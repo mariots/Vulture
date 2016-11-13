@@ -39,6 +39,8 @@ public class MainMenuActivity extends AppCompatActivity implements  View.OnClick
             String game_type = "private_game";                                 //Set game_type variable
             intent.putExtra(GAME_TYPE, game_type);                             //Set game_type as an extra
             startActivity(intent);*/
+            Intent intent = new Intent(this, GameLobby.class);//Intent to Add Friends
+                    startActivity(intent);
         }
         if (view.getId() == R.id.check_invites_button) {
             //Go to CheckInvitesActivity
