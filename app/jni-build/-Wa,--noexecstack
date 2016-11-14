@@ -1,15 +1,19 @@
-obj/local/x86/objs/tensorflow_inception/./yuv2rgb.o: jni/./yuv2rgb.cc \
- jni/./yuv2rgb.h jni/./include/tensorflow/core/platform/types.h \
+obj/local/x86/objs/tensorflow_inception/./imageutils_jni.o: \
+ jni/./imageutils_jni.cc jni/include/tensorflow/core/platform/types.h \
  /opt/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9/include/string \
  jni/include/tensorflow/core/platform/platform.h \
- jni/include/tensorflow/core/platform/default/integral_types.h
+ jni/include/tensorflow/core/platform/default/integral_types.h \
+ jni/include/tensorflow/examples/android/jni/rgb2yuv.h \
+ jni/include/tensorflow/examples/android/jni/yuv2rgb.h
 
-jni/./yuv2rgb.h:
-
-jni/./include/tensorflow/core/platform/types.h:
+jni/include/tensorflow/core/platform/types.h:
 
 /opt/android-ndk-r11c/sources/cxx-stl/gnu-libstdc++/4.9/include/string:
 
 jni/include/tensorflow/core/platform/platform.h:
 
 jni/include/tensorflow/core/platform/default/integral_types.h:
+
+jni/include/tensorflow/examples/android/jni/rgb2yuv.h:
+
+jni/include/tensorflow/examples/android/jni/yuv2rgb.h:

@@ -37,7 +37,9 @@ TENSORFLOW_CFLAGS := -frtti \
 
 endif
 
-TENSORFLOW_SRC_FILES := ./yuv2rgb.cc
+TENSORFLOW_SRC_FILES := ./yuv2rgb.cc \
+        ./rgb2yuv.cc \
+        ./imageutils_jni.cc \
 
 LOCAL_MODULE := tensorflow_inception
 LOCAL_ARM_MODE := arm
