@@ -25,4 +25,5 @@
     <string name="request_permission">Permission required.</string>
     <string name="intro_message">Welcome</string>
     <string name="camera_error">Can\'t access camera.</string>
+    <string name="title_activity_in_game_gui">InGameGuiActivity</string>
 </resources>
