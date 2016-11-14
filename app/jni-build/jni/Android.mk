@@ -47,34 +47,26 @@ LOCAL_CFLAGS := $(TENSORFLOW_CFLAGS)
 ifeq ($(TARGET_ARCH_ABI), armeabi-v7a)
 
 LOCAL_LDLIBS := \
-        -W1, -whole-archive \
+        -Wl,-whole-archive \
         $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libandroid_tensorflow_kernels.lo \
         $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libandroid_tensorflow_lib.lo \
         $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libandroid_tensorflow_lib_lite.lo \
-        $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libre2.a \
-        $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libprotos_all_cc.a \
-        $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libprotobuf.a \
-        $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libprotobuf_lite.a \
-        -W1,-no-whole-archive \
+        -Wl,-no-whole-archive \
         $(NDK_ROOT)/sources/cxx-stl/gnu-libstdc++/4.9/libs/$(TARGET_ARCH_ABI)/libgnustl_static.a \
         $(NDK_ROOT)/sources/cxx-stl/gnu-libstdc++/4.9/libs/$(TARGET_ARCH_ABI)/libsupc++.a \
-        -llog -landroid -lm -ljnigraphics -pthread -no-canonical-prefixes '-march=armv7-a' -W1,--fix-cortex-a8 -W1,-S
+        -llog -landroid -lm -ljnigraphics -pthread -no-canonical-prefixes '-march=armv7-a' -Wl,--fix-cortex-a8 -Wl,-S
 
 else
 
 LOCAL_LDLIBS := \
-        -W1, -whole-archive \
+        -Wl,-whole-archive \
         $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libandroid_tensorflow_kernels.lo \
         $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libandroid_tensorflow_lib.lo \
         $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libandroid_tensorflow_lib_lite.lo \
-        $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libre2.a \
-        $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libprotos_all_cc.a \
-        $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libprotobuf.a \
-        $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libprotobuf_lite.a \
-        -W1,-no-whole-archive \
+        -Wl,-no-whole-archive \
         $(NDK_ROOT)/sources/cxx-stl/gnu-libstdc++/4.9/libs/$(TARGET_ARCH_ABI)/libgnustl_static.a \
         $(NDK_ROOT)/sources/cxx-stl/gnu-libstdc++/4.9/libs/$(TARGET_ARCH_ABI)/libsupc++.a \
-        -landroid -ljnigraphics -llog -lm -z defs -s '-W1,--icf=all' -W1,--exclude-libs,ALL -pthread -static-libgcc -no-canonical-prefixes -W1,-S
+        -landroid -ljnigraphics -llog -lm -z defs -s '-W1,--icf=all' -Wl,--exclude-libs,ALL -pthread -static-libgcc -no-canonical-prefixes -Wl,-S
 
 endif
 
