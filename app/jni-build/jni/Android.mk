@@ -27,7 +27,7 @@ TENSORFLOW_CFLAGS := -frtti \
         -fstack-protector-strong \
         -fno-exceptions \
         -DEIGEN_AVOID_STL_ARRAY \
-        '-std:c++11' \
+        '-std=c++11' \
         '-DMIN_LOG_LEVEL=0' \
         -DTF_LEAN_BINARY \
         -O2 \
@@ -51,6 +51,10 @@ LOCAL_LDLIBS := \
         $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libandroid_tensorflow_kernels.lo \
         $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libandroid_tensorflow_lib.lo \
         $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libandroid_tensorflow_lib_lite.lo \
+        $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libre2.a \
+        $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libprotos_all_cc.a \
+        $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libprotobuf.a \
+        $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libprotobuf_lite.a \
         -Wl,-no-whole-archive \
         $(NDK_ROOT)/sources/cxx-stl/gnu-libstdc++/4.9/libs/$(TARGET_ARCH_ABI)/libgnustl_static.a \
         $(NDK_ROOT)/sources/cxx-stl/gnu-libstdc++/4.9/libs/$(TARGET_ARCH_ABI)/libsupc++.a \
@@ -63,10 +67,14 @@ LOCAL_LDLIBS := \
         $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libandroid_tensorflow_kernels.lo \
         $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libandroid_tensorflow_lib.lo \
         $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libandroid_tensorflow_lib_lite.lo \
+        $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libre2.a \
+        $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libprotos_all_cc.a \
+        $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libprotobuf.a \
+        $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libprotobuf_lite.a \
         -Wl,-no-whole-archive \
         $(NDK_ROOT)/sources/cxx-stl/gnu-libstdc++/4.9/libs/$(TARGET_ARCH_ABI)/libgnustl_static.a \
         $(NDK_ROOT)/sources/cxx-stl/gnu-libstdc++/4.9/libs/$(TARGET_ARCH_ABI)/libsupc++.a \
-        -landroid -ljnigraphics -llog -lm -z defs -s '-W1,--icf=all' -Wl,--exclude-libs,ALL -pthread -static-libgcc -no-canonical-prefixes -Wl,-S
+        -landroid -ljnigraphics -llog -lm -z defs -s '-Wl,--icf=all' -Wl,--exclude-libs,ALL -pthread -static-libgcc -no-canonical-prefixes -Wl,-S
 
 endif
 
