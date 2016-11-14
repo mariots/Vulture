@@ -11,6 +11,7 @@ package com.hone.vulture;
         import android.content.DialogInterface;
         import android.content.pm.PackageManager;
         import android.content.res.Configuration;
+        import android.graphics.Bitmap;
         import android.graphics.ImageFormat;
         import android.graphics.Matrix;
         import android.graphics.Point;
@@ -31,6 +32,7 @@ package com.hone.vulture;
         import android.os.Bundle;
         import android.os.Handler;
         import android.os.HandlerThread;
+        import android.os.Trace;
         import android.support.annotation.NonNull;
         import android.support.v13.app.FragmentCompat;
         import android.support.v4.content.ContextCompat;
@@ -43,6 +45,8 @@ package com.hone.vulture;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.Toast;
+
+        import com.hone.utils.ImageUtils;
 
         import java.io.File;
         import java.io.FileOutputStream;
@@ -112,6 +116,15 @@ public class CameraConnectionFragment extends Fragment
      * Max preview height that is guaranteed by Camera2 API
      */
     private static final int MAX_PREVIEW_HEIGHT = 1080;
+
+    private boolean computing = false;
+    private int previewWidth = 0;
+    private int previewHeight = 0;
+    private byte[][] yuvBytes;
+    private int[] rgbBytes = null;
+    private Bitmap rgbFrameBitmap = null;
+    private Bitmap croppedBitmap = null;
+    private Bitmap cropCopyBitmap;
 
     /**
      * {@link TextureView.SurfaceTextureListener} handles several lifecycle events on a
@@ -228,6 +241,48 @@ public class CameraConnectionFragment extends Fragment
 
         @Override
         public void onImageAvailable(ImageReader reader) {
+            Image image = null;
+            try {
+                image = reader.acquireLatestImage();
+
+                if (image == null) {
+                    return;
+                }
+
+                if (computing) {
+                    image.close();
+                    return;
+                }
+                computing = true;
+
+                Trace.beginSection("imageAvailable");
+
+                final Image.Plane[] planes = image.getPlanes();
+                fillBytes(planes, yuvBytes); //?
+
+                final int yRowStride = planes[0].getRowStride();
+                final int uvRowStride = planes[1].getRowStride();
+                final int uvPixelStride = planes[1].getPixelStride();
+                ImageUtils.convertYUV420ToARGB8888(
+                        yuvBytes[0],
+                        yuvBytes[1],
+                        yuvBytes[2],
+                        rgbBytes,
+                        previewWidth,
+                        previewHeight,
+                        yRowStride,
+                        uvRowStride,
+                        uvPixelStride,
+                        false);
+
+                image.close();
+            } catch (final Exception e) {
+                if (image != null) {
+                    image.close();
+                }
+                Trace.endSection();
+                return;
+            }
             mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage(), mFile));
         }
 
@@ -332,6 +387,18 @@ public class CameraConnectionFragment extends Fragment
         }
 
     };
+
+    protected void fillBytes(final Image.Plane[] planes, final byte[][] yuvBytes) {
+        // Because of the variable row stride it's not possible to know in
+        // advance the actual necessary dimensions of the yuv planes.
+        for (int i = 0; i < planes.length; ++i) {
+            final ByteBuffer buffer = planes[i].getBuffer();
+            if (yuvBytes[i] == null) {
+                yuvBytes[i] = new byte[buffer.capacity()];
+            }
+            buffer.get(yuvBytes[i]);
+        }
+    }
 
     /**
      * Shows a {@link Toast} on the UI thread.
@@ -546,6 +613,8 @@ public class CameraConnectionFragment extends Fragment
                 if (maxPreviewHeight > MAX_PREVIEW_HEIGHT) {
                     maxPreviewHeight = MAX_PREVIEW_HEIGHT;
                 }
+
+                yuvBytes = new byte[3][];
 
                 // Danger, W.R.! Attempting to use too large a preview size could  exceed the camera
                 // bus' bandwidth limitation, resulting in gorgeous previews but the storage of
