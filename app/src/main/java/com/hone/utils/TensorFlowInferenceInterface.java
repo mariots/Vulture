@@ -41,7 +41,7 @@ public class TensorFlowInferenceInterface {
      * @param model The filepath to the GraphDef proto representing the model.
      * @return The native status returned by TensorFlow. 0 indicates success.
      */
-    //public native int initializeTensorFlow(AssetManager assetManager, String model);
+    public native int initializeTensorFlow(AssetManager assetManager, String model);
 
     /**
      * Runs inference between the previously registered input nodes (via fillNode*)
@@ -51,14 +51,14 @@ public class TensorFlowInferenceInterface {
      * @param outputNames A list of output nodes which should be filled by the inference pass.
      * @return The native status returned by TensorFlow. 0 indicates success.
      */
-    //public native int runInference(String[] outputNames);
+    public native int runInference(String[] outputNames);
 
     /**
      * Cleans up the native variables associated with this Object. initializeTensorFlow() can then
      * be called again to initialize a new session.
      *
      */
-    //public native void close();
+    public native void close();
 
     // Methods for creating a native Tensor and filling it with values.
     //public native void fillNodeFloat(String inputName, int[] dims, float[] values);
