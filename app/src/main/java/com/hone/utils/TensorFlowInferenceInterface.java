@@ -61,13 +61,13 @@ public class TensorFlowInferenceInterface {
     public native void close();
 
     // Methods for creating a native Tensor and filling it with values.
-    //public native void fillNodeFloat(String inputName, int[] dims, float[] values);
+    public native void fillNodeFloat(String inputName, int[] dims, float[] values);
 
-    //public native void fillNodeInt(String inputName, int[] dims, int[] values);
+    public native void fillNodeInt(String inputName, int[] dims, int[] values);
 
-    //public native void fillNodeDouble(String inputName, int[] dims, double[] values);
+    public native void fillNodeDouble(String inputName, int[] dims, double[] values);
 
-    //public native void readNodeFloat(String outputName, float[] values);
-    //public native void readNodeInt(String outputName, int[] values);
-    //public native void readNodeDouble(String outputName, double[] values);
+    public native void readNodeFloat(String outputName, float[] values);
+    public native void readNodeInt(String outputName, int[] values);
+    public native void readNodeDouble(String outputName, double[] values);
 }
