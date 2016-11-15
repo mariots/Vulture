@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "tensorflow/contrib/android/jni/jni_utils.h"
+#include "jni_utils.h"
 
 #include <android/asset_manager.h>
 #include <android/asset_manager_jni.h>
@@ -29,7 +29,7 @@ limitations under the License.
 #include "google/protobuf/io/zero_copy_stream_impl.h"
 #include "google/protobuf/io/zero_copy_stream_impl_lite.h"
 #include "google/protobuf/message_lite.h"
-#include "tensorflow/contrib/android/jni/limiting_file_input_stream.h"
+#include "limiting_file_input_stream.h"
 #include "tensorflow/core/platform/logging.h"
 
 static const char* const ASSET_PREFIX = "file:///android_asset/";

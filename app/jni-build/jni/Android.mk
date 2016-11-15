@@ -84,6 +84,10 @@ endif
 
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/include \
     $(LOCAL_PATH)/include/google/protobuf/src \
+    $(LOCAL_PATH)/genfiles \
+    $(LOCAL_PATH)/include/external/eigen_archive \
+    $(LOCAL_PATH)/include/external/eigen_archive/eigen-eigen-4c94692de3e5 \
+    $(LOCAL_PATH)/include/third_party/eigen3 \
 
 NDK_MODULE_PATH := $(call my-dir)
 include $(BUILD_SHARED_LIBRARY)
