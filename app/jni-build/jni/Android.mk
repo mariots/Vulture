@@ -40,6 +40,8 @@ endif
 TENSORFLOW_SRC_FILES := ./yuv2rgb.cc \
         ./rgb2yuv.cc \
         ./imageutils_jni.cc \
+        ./tensorflow_inference_jni.cc \
+        ./jni_utils.cc \
 
 LOCAL_MODULE := tensorflow_inception
 LOCAL_ARM_MODE := arm
