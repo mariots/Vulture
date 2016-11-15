@@ -83,6 +83,7 @@ LOCAL_LDLIBS := \
 endif
 
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/include \
+    $(LOCAL_PATH)/include/google/protobuf/src \
 
 NDK_MODULE_PATH := $(call my-dir)
 include $(BUILD_SHARED_LIBRARY)
