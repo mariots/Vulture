@@ -10,6 +10,7 @@ package com.hone.vulture;
         import android.content.Context;
         import android.content.DialogInterface;
         import android.content.pm.PackageManager;
+        import android.content.res.AssetManager;
         import android.content.res.Configuration;
         import android.graphics.Bitmap;
         import android.graphics.ImageFormat;
@@ -47,6 +48,7 @@ package com.hone.vulture;
         import android.widget.Toast;
 
         import com.hone.utils.ImageUtils;
+        import com.hone.utils.TensorFlowImageClassifier;
 
         import java.io.File;
         import java.io.FileOutputStream;
@@ -125,6 +127,15 @@ public class CameraConnectionFragment extends Fragment
     private Bitmap rgbFrameBitmap = null;
     private Bitmap croppedBitmap = null;
     private Bitmap cropCopyBitmap;
+    private TensorFlowImageClassifier classifier;
+    private static final String MODEL_FILE = "file:///android_asset/tensorflow_inception_graph.pb";
+    private static final String LABEL_FILE = "file:///android_asset/imagenet_comp_graph_label_strings.txt";
+    private static final int NUM_CLASSES = 1001;
+    private static final int INPUT_SIZE = 224;
+    private static final int IMAGE_MEAN = 117;
+    private static final float IMAGE_STD = 1;
+    private static final String INPUT_NAME = "input:0";
+    private static final String OUTPUT_NAME = "output:0";
 
     /**
      * {@link TextureView.SurfaceTextureListener} handles several lifecycle events on a
@@ -612,6 +623,16 @@ public class CameraConnectionFragment extends Fragment
 
                 if (maxPreviewHeight > MAX_PREVIEW_HEIGHT) {
                     maxPreviewHeight = MAX_PREVIEW_HEIGHT;
+                }
+
+                classifier = new TensorFlowImageClassifier();
+                try {
+                    int status = classifier.initializeTensorFlow(
+                            getActivity().getBaseContext().getAssets(), MODEL_FILE, LABEL_FILE, NUM_CLASSES, INPUT_SIZE, IMAGE_MEAN, IMAGE_STD,
+                            INPUT_NAME, OUTPUT_NAME);
+                    if (status == 0) Log.i(TAG, "TensorFlow successfully initialized.");
+                } catch (final IOException e) {
+                    Log.e(TAG, "Couldn't initialize image classifier.");
                 }
 
                 yuvBytes = new byte[3][];

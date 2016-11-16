@@ -32,7 +32,7 @@ public class TensorFlowImageClassifier implements Classifier {
     private String[] outputNames;
     private TensorFlowInferenceInterface inferenceInterface;
 
-    public int initializeTensorflow(AssetManager assetManager,
+    public int initializeTensorFlow(AssetManager assetManager,
                                     String modelFilename,
                                     String labelFilename,
                                     int numClasses,
@@ -60,6 +60,7 @@ public class TensorFlowImageClassifier implements Classifier {
         floatValues = new float[inputSize * inputSize * 3];
         outputs = new float[numClasses];
         inferenceInterface = new TensorFlowInferenceInterface();
+        Log.i(TAG, "Initializing inference interface.");
         return inferenceInterface.initializeTensorFlow(assetManager, modelFilename);
     }
 

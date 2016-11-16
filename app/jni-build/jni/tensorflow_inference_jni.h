@@ -28,7 +28,7 @@ extern "C" {
 #endif  // __cplusplus
 
 #define TENSORFLOW_METHOD(METHOD_NAME) \
-  Java_org_tensorflow_contrib_android_TensorFlowInferenceInterface_##METHOD_NAME  // NOLINT
+  Java_com_hone_utils_TensorFlowInferenceInterface_##METHOD_NAME  // NOLINT
 
 #define FILL_NODE_SIGNATURE(DTYPE, JAVA_DTYPE)                               \
   JNIEXPORT void TENSORFLOW_METHOD(fillNode##DTYPE)(                         \

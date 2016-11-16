@@ -1,7 +1,9 @@
 package com.hone.vulture;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Size;
 
 public class CameraActivity extends Activity {
 
