@@ -35,18 +35,22 @@ public class MainMenuActivity extends AppCompatActivity implements  View.OnClick
             intent.putExtra(GAME_TYPE, game_type);                             //Set game_type as an extra
             startActivity(intent);
 
-            //Intent intent = new Intent(this, CameraActivity.class);
-            //startActivity(intent);
+            /*
+            Intent intent = new Intent(this, CameraActivity.class);
+            startActivity(intent);
+            */
         }
         if (view.getId() == R.id.host_button) {
 
             Intent intent = new Intent(this, SetVariables.class);   //Intent to Set Game Variables
             String game_type = "private_game";                                 //Set game_type variable
             intent.putExtra(GAME_TYPE, game_type);                             //Set game_type as an extra
+            startActivity(intent);
 
-            //startActivity(intent);
-            //Intent intent = new Intent(this, GameLobby.class);//Intent to Add Friends
-                    startActivity(intent);
+            /*
+            Intent intent = new Intent(this, GameLobby.class);//Intent to Add Friends
+            startActivity(intent);
+            */
         }
         if (view.getId() == R.id.check_invites_button) {
             //Go to CheckInvitesActivity
