@@ -47,6 +47,7 @@
             android:theme="@style/FullscreenTheme" />
         <activity android:name=".CameraActivity" />
         <activity android:name=".InGameActivity"></activity>
+        <activity android:name=".SetVariables"></activity>
     </application>
 
 </manifest>

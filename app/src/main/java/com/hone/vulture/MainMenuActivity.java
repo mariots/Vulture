@@ -21,7 +21,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         text.setText(message);
 
 
-        //Listeners for buttons
+        // Listeners for buttons
         findViewById(R.id.quick_button).setOnClickListener(this);
         findViewById(R.id.host_button).setOnClickListener(this);
         findViewById(R.id.check_invites_button).setOnClickListener(this);
@@ -29,33 +29,22 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     public void onClick(View view) {
         if (view.getId() == R.id.quick_button) {
-
-            Intent intent = new Intent(this, SetVariables.class);   //Intent to Set Game Variables
+            Intent intent = new Intent(this, SetVariables.class);              //Intent to Set Variables
             String game_type = "quick_game";                                   //Set game_type variable
             intent.putExtra(GAME_TYPE, game_type);                             //Set game_type as an extra
-            startActivity(intent);
+            startActivity(intent);                                             //Move to Set Variables
 
-            /*
-            Intent intent = new Intent(this, CameraActivity.class);
-            startActivity(intent);
-            */
         }
         if (view.getId() == R.id.host_button) {
-
-            Intent intent = new Intent(this, SetVariables.class);   //Intent to Set Game Variables
+            Intent intent = new Intent(this, SetVariables.class);              //Intent to Set Variables
             String game_type = "private_game";                                 //Set game_type variable
             intent.putExtra(GAME_TYPE, game_type);                             //Set game_type as an extra
-            startActivity(intent);
+            startActivity(intent);                                             //Move to Set Variables
 
-            /*
-            Intent intent = new Intent(this, GameLobby.class);//Intent to Add Friends
-            startActivity(intent);
-            */
         }
         if (view.getId() == R.id.check_invites_button) {
-            //Go to CheckInvitesActivity
             Intent intent = new Intent(this, CheckInvitesActivity.class);       //Intent to Check Invites
-            startActivity(intent);
+            startActivity(intent);                                              //Move to Check Invites
         }
 
     }
