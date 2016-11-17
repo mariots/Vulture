@@ -47,7 +47,7 @@ public class SetVariables extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View view) {
         if (view.getId() == R.id.playButton) {
-            Intent intent = new Intent(this, GameLobby.class);                 //Intent to Game Lobby
+            Intent intent = new Intent(this, GameLobbyActivity.class);                 //Intent to Game Lobby
             //String game_type = "quick_game";                                   //Set game_type variable           //Save these in case they are necessary later
             //intent.putExtra(GAME_TYPE, game_type);                             //Set game_type as an extra
             startActivity(intent);                                             //Move to Set Variables
