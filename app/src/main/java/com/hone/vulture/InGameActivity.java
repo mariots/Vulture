@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InGameActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
@@ -16,51 +19,36 @@ public class InGameActivity extends AppCompatActivity implements View.OnClickLis
 
         findViewById(R.id.camera_button).setOnClickListener(this);
 
-        String ItemOne = "One";         //Placeholders
-        String ItemTwo = "Two";         //In real case use getExtra to retrieve the items for the list
-        String ItemThree = "Three";
-        String ItemFour = "Four";
-        String ItemFive = "Five";
-        String ItemSix = "Six";
-        String ItemSeven = "Seven";
-        String ItemEight = "Eight";
+        Intent previousIntent = getIntent();                                                        //get intent
+        ArrayList<String> myItemList = previousIntent.getStringArrayListExtra("ITEM_LIST");         //get item list from game lobby activity
+        Integer VerifiedItem = previousIntent.getIntExtra("VerifiedItem", 0);                       //check verified flag from camera activity
 
-        String PlayerOne = "Andrew";         //Placeholders
-        String PlayerTwo = "Alex";         //In real case use getExtra to retrieve the items for the list
-        String PlayerThree = "Dian";
-        String PlayerFour = "Halen";
-        String PlayerFive = "Mario";
-        String PlayerSix = "Bob";
-        String PlayerSeven = "James";
-        String PlayerEight = "John";
-
-        String[] myItemList = {ItemOne, ItemTwo, ItemThree, ItemFour, ItemFive, ItemSix, ItemSeven, ItemEight};
-
-        ArrayAdapter<String> itemAdapter = new
+        ArrayAdapter<String> itemAdapter = new                                                      //adapter for item list
                 ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myItemList);
 
-        ListView myList = (ListView)
+        ListView myList = (ListView)                                                                //Set ListView contents for item list
                 findViewById(R.id.ItemList);
                 myList.setAdapter(itemAdapter);
 
-        String[] myPlayerList = {PlayerOne, PlayerTwo, PlayerThree, PlayerFour, PlayerFive, PlayerSix, PlayerSeven, PlayerEight};
+        List<String> myPlayerList = new ArrayList<String>();                                        //Create player list
 
-        ArrayAdapter<String> playerAdapter = new
+        ArrayAdapter<String> playerAdapter = new                                                    //adapter for player list
                 ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myPlayerList);
 
-        ListView playerList = (ListView)
+        ListView playerList = (ListView)                                                            //Set ListView contents for player list
                 findViewById(R.id.PlayerList);
                 playerList.setAdapter(playerAdapter);
     }
 
     public void onClick(View view) {
         if (view.getId() == R.id.camera_button) {
-            Intent intent = new Intent(this, CameraActivity.class);   //Intent to Camera Screen
+            Intent intent = new Intent(this, CameraActivity.class);                                 //Intent to Camera Screen
             startActivity(intent);
         }
 
         if (view.getId() == R.id.exit_button) {
-            //Intent intent = new Intent(this, ExitGame)
+            Intent intent = new Intent(this, MainMenuActivity.class);                               //Intent to Camera Screen
+            startActivity(intent);
         }
     }
 }
